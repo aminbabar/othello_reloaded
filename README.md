@@ -26,7 +26,7 @@ This project will also include:
 
 ## Wireframes
 
-![Image of Wireframe](https://wireframe.cc/sdeduc)
+![Image of Wireframe](./wireframe.png)
 
 ## Technologies, Libraries, APIs
 * Webpack and Babel to bundle and transpile the source JavaScript code
