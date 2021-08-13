@@ -30,14 +30,31 @@ class boardState {
         return board;
     }
 
+    static nextPlayerColor(currentPlayerColor) {
+        if (currentPlayerColor === white) return "black";
+        return "white"
+    }
+
+
 }
 
+boardState.prototype.makeMove = function() {
+
+}
+
+boardState.prototype.availableMoves = function () {
+
+}
+
+
+boardState.prototype.currentPlayerScore = function () {
+
+}
 
 
 
 // prints out the string version of the board to the console
 boardState.prototype.printBoard = function() {
-    debugger;
     for (let i = 0; i < this.board.length; i++) {
         let str = "";
         for (let j = 0; j < this.board[0].length; j++) {
@@ -55,15 +72,34 @@ boardState.prototype.printBoard = function() {
 }
 
 
+
+
+
+
 class Test {
-    constructor () {
+    constructor() {
         this.test = "test";
+        this.length = 10;
     }
 }
 
-boardState.prototype.test = function(i, j) {
+Test.prototype.blah = function() {
+    return this.length * 10;
+}
+
+
+boardState.prototype.test = function (i, j) {
     this.board[i][j] = new Test;
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -81,7 +117,8 @@ function clone(instance) {
         JSON.parse(JSON.stringify(instance)),
     );
 }
-
+// Upon some testing, if I had classes in the board, cloning the board, would 
+// not clone the classes present within. 
 
 
 let state = new boardState();
@@ -97,6 +134,7 @@ let newState = clone(state);
 newState.test(0, 0);
 newState.test(2, 2);
 newState.printBoard();
+debugger;
 
 
 console.log("original");
