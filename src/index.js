@@ -9,7 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
 // console.log("before");
     // debugger;   
     // state.printBoard();
-    // console.log(state.availableMoves());
+    console.log(state.availableMoves());
+    // state.printBoard();
+    // state.
+    state.testMove(state.availableMoves());
+    state.printBoard();
+    // console.log(state.movesInDir(3, 0, 2, 1));
+    state.makeMove([3,2]);
+    state.printBoard();
+    console.log("hi");
     state.testMove(state.availableMoves());
     state.printBoard();
 

@@ -41,9 +41,27 @@ class BoardState {
         if (currentPlayerColor === white) return "black";
         return "white"
     }
-
-
 }
+
+
+
+// Should only be called on valid moves. Does not check for validity.
+// BoardState.prototype.makeMove = function(pos) {
+//     let r = pos[0];
+//     let c = pos[1];
+
+//     let moves = [];
+//     let dirs = [1, 0, -1];
+
+//     for (let dr in dirs) {
+//         for (let dc in dirs) {
+//             if (dr === dc) continue;
+//             let movesInDir = [];
+//             moves = moves.concat(this.movesInDir(r, dr, c, dc));
+//         }
+//     }
+// }
+
 
 // Returns all the moves for the current player 
 BoardState.prototype.availableMoves = function () {
@@ -81,76 +99,40 @@ BoardState.prototype.validMove = function(pos, player) {
     for (const dr of dirs) {
         for (const dc of dirs) {
             if (dr == 0 && dc == 0) continue;
-            // console.log(posR, dr, posC, dc);
-            if ((this.movesInDir(posR, dr,  posC, dc)).length > 0) return true
+            if (posR === 2 && posC === 3) debugger;
+            console.log(posR, posC);
+            if (this.movesInDir(posR, dr,  posC, dc).length > 0) return true
         }
     }
     return false;
 }
 
-
-
 // flips the color of the piece at the given pos
-BoardState.prototype.flip = function(pos) {
-    // debugger;
-    this.board[pos[0]][pos[1]] = this.currentPlayer;
-}
-
-
+// BoardState.prototype.flip = function(pos) {
+//     this.board[pos[0], pos[1]] = BoardState;
+// }
 
 // Returns true if a piece of the current players color is flanking pieces of another
 // player in a given direciton.
-BoardState.prototype.movesInDir = function (r, dr, c, dc, positions = []) {
+BoardState.prototype.movesInDir = function(r, dr, c, dc, positions=[]) {
     if (!this.validPos([r + dr, c + dc])) return [];
 
     let currPiece = this.board[r + dr][c + dc];
 
-    if (!currPiece || currPiece === "MOVE") return []; // CHANGE THE MOVE PART
+    if (!currPiece) return [];
 
-    // if flanking condition is true
     if (currPiece === this.currentPlayer && positions.length > 0) {
+        debugger;
         return positions;
-    } 
-    // false if trying to make a move next to our own color in that direction
-    else if (currPiece === this.currentPlayer) {
-        return [];
     }
 
-
     if (currPiece === BoardState.oppColor(this.currentPlayer)) {
+        debugger;
         positions.push([r + dr, c + dc]);
         return this.movesInDir(r + dr, dr, c + dc, dc, positions)
     }
 }
 
-
-// Should only be called on valid moves. Does not check for validity.
-BoardState.prototype.makeMove = function(pos) {
-    const r = pos[0];
-    const c = pos[1];
-
-    let moves = [];
-    const dirs = [1, 0, -1];
-
-    for (const dr of dirs) {
-        for (const dc of dirs) {
-
-            if (dr === 0 && dc === 0) continue;
-            console.log(r, dr, c, dc);
-            // debugger;
-            moves = moves.concat(this.movesInDir(r, dr, c, dc));
-        }
-    }
-
-    // flip all the relevant pieces for the current move
-    this.board[r][c] = this.currentPlayer;
-    // debugger;
-    for (let move of moves) {
-        this.flip(move);
-    }
-
-    this.currentPlayer = BoardState.oppColor(this.currentPlayer);
-}
 
 
 
@@ -184,11 +166,26 @@ BoardState.prototype.printBoard = function() {
     }
 }
 
-window.BoardState = BoardState;
+// window.BoardState = BoardState;
 
 
 
-export default BoardState;
+// export default BoardState;
+
+let state = new BoardState();
+// state.test(1, 1);
+// state.test(7, 7);
+// console.log("before");
+// debugger;   
+// state.printBoard();
+// console.log(state.availableMoves());
+state.testMove(state.availableMoves());
+state.printBoard();
+
+
+
+
+
 
 
 // class Test {
@@ -236,7 +233,7 @@ function clone(instance) {
 // not clone the classes present within. 
 
 
-// let state = new boardState();
+// let state = new BoardState();
 // state.test(1, 1);
 // state.test(7, 7);
 // console.log("before");
