@@ -27,6 +27,8 @@ This project will also include:
 ## Wireframes
 
 ![Image of Wireframe](./wireframe.png)
+Options will contains a list of all the AI players available for the user to play against
+
 
 ## Technologies, Libraries, APIs
 * Webpack and Babel to bundle and transpile the source JavaScript code
