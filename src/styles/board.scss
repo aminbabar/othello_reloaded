@@ -1,0 +1,23 @@
+h1 {
+    // margin: auto;
+    font-size: 30px;
+    text-align: center;
+}
+
+.board-ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 832px;
+    margin: auto;
+    border: 10px solid black;
+}
+
+.board-ul li {
+    border: 2px solid black;
+    background-color: green;
+    width: 100px;
+    height: 100px;
+    // margin: auto;
+}
+
+

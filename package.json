@@ -8,6 +8,9 @@
     "watch": "webpack --watch --mode=development",
     "build": "webpack --mode=production"
   },
+  "browserslist": [
+    "defaults"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aminbabar/othello_reloaded.git"
@@ -31,8 +34,5 @@
     "sass-loader": "^12.1.0",
     "webpack": "^5.50.0",
     "webpack-cli": "^4.7.2"
-  },
-  "browserslist": [
-    "defaults"
-  ]
+  }
 }
