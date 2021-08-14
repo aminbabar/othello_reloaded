@@ -58,6 +58,10 @@ BoardState.prototype.availableMoves = function () {
     return moves;
 }
 
+BoardState.prototype.getBoard = function() {
+    return this.board;
+}
+
 // returns true if the current position is within bounds, else false
 BoardState.prototype.validPos = function(pos) {
     let posR = pos[0];

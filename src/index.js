@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const figure = document.querySelector('.board');
     let state = new BoardState();
     let view = new View(state, figure);
+    view.refreshBoard(state.getBoard(), state.availableMoves());
+
 // state.test(1, 1);
 // state.test(7, 7);
 // console.log("before");
