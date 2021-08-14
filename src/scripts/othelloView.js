@@ -9,16 +9,30 @@ class View {
         this.el.appendChild(this.ul);
         this.handleClick = this.handleClick.bind(this);
         this.el.addEventListener("click", this.handleClick)
+        this.refreshBoard = this.refreshBoard.bind(this);
     }
 
     handleClick (e) {
-        console.log(e.target);
+        let data = e.target.dataset;
+        let pos = [parseInt(data.r), parseInt(data.c)];
+        // debugger;
+        this.game.makeMove(pos);
+        // debugger;
+        this.refreshBoard(this.game.board, this.game.availableMoves());
     }
 
     refreshBoard(board, availableMoves) {
         let ulChildren = this.ul.children;
         // debugger;
         let pieceClasses = ["white", "black", "moves"];
+
+        for (let move of availableMoves) {
+            let index = (move[0] * 8) + move[1]
+            console.log(index, move[0], move[1]);
+            let currLi = ulChildren[index];
+            currLi.children[0].classList.remove(...pieceClasses);
+            currLi.children[0].classList.add("moves");
+        }
         for (let r = 0; r < 8; r++) {
             for (let c = 0; c < 8; c++) {
                 // index for the ulChildren array. Index converted to 1D. 
@@ -32,12 +46,7 @@ class View {
                 }
             }
         }
-        for (let move of availableMoves) {
-            let index = (move[0] * 8) + move[1]
-            let currLi = ulChildren[index];
-            currLi.children[0].classList.remove(...pieceClasses);
-            currLi.children[0].classList.add("moves");
-        }
+
     }
 
     setupBoard() {

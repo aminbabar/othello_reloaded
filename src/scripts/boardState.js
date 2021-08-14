@@ -105,8 +105,8 @@ BoardState.prototype.flip = function(pos) {
 // Returns true if a piece of the current players color is flanking pieces of another
 // player in a given direciton.
 BoardState.prototype.movesInDir = function (r, dr, c, dc, positions = []) {
+    // debugger;
     if (!this.validPos([r + dr, c + dc])) return [];
-
     let currPiece = this.board[r + dr][c + dc];
 
     if (!currPiece || currPiece === "MOVE") return []; // CHANGE THE MOVE PART
@@ -130,6 +130,7 @@ BoardState.prototype.movesInDir = function (r, dr, c, dc, positions = []) {
 
 // Should only be called on valid moves. Does not check for validity.
 BoardState.prototype.makeMove = function(pos) {
+    // debugger;
     const r = pos[0];
     const c = pos[1];
 
@@ -140,7 +141,7 @@ BoardState.prototype.makeMove = function(pos) {
         for (const dc of dirs) {
 
             if (dr === 0 && dc === 0) continue;
-            console.log(r, dr, c, dc);
+            // console.log(r, dr, c, dc);
             // debugger;
             moves = moves.concat(this.movesInDir(r, dr, c, dc));
         }
@@ -154,6 +155,7 @@ BoardState.prototype.makeMove = function(pos) {
     }
 
     this.currentPlayer = BoardState.oppColor(this.currentPlayer);
+    this.printBoard();
 }
 
 
