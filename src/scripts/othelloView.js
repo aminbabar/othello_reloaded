@@ -16,9 +16,15 @@ class View {
         let data = e.target.dataset;
         let pos = [parseInt(data.r), parseInt(data.c)];
         // debugger;
-        this.game.makeMove(pos);
-        // debugger;
-        this.refreshBoard(this.game.board, this.game.availableMoves());
+        console.log(this.game.availableMoves());
+        for (let ele of this.game.availableMoves()) {
+            // debugger;
+            if (ele[0] === pos[0] && ele[1] === pos[1]) {
+                this.game.makeMove(pos);
+                // debugger;
+                this.refreshBoard(this.game.board, this.game.availableMoves());
+            }
+        }
     }
 
     refreshBoard(board, availableMoves) {
@@ -26,18 +32,13 @@ class View {
         // debugger;
         let pieceClasses = ["white", "black", "moves"];
 
-        for (let move of availableMoves) {
-            let index = (move[0] * 8) + move[1]
-            console.log(index, move[0], move[1]);
-            let currLi = ulChildren[index];
-            currLi.children[0].classList.remove(...pieceClasses);
-            currLi.children[0].classList.add("moves");
-        }
+
         for (let r = 0; r < 8; r++) {
             for (let c = 0; c < 8; c++) {
                 // index for the ulChildren array. Index converted to 1D. 
                 let index = (r * 8) + c
                 let currLi = ulChildren[index];
+                currLi.children[0].innerHTML = `r:${r}, c:${c}`
                 currLi.children[0].classList.remove(...pieceClasses);
                 if (board[r][c] === "white") {
                     currLi.children[0].classList.add("white");
@@ -45,6 +46,14 @@ class View {
                     currLi.children[0].classList.add("black");
                 }
             }
+        }
+
+        for (let move of availableMoves) {
+            let index = (move[0] * 8) + move[1]
+            // console.log(index, move[0], move[1]);
+            let currLi = ulChildren[index];
+            currLi.children[0].classList.remove(...pieceClasses);
+            currLi.children[0].classList.add("moves");
         }
 
     }

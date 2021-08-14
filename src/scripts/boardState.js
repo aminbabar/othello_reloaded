@@ -48,8 +48,8 @@ class BoardState {
 // Returns all the moves for the current player 
 BoardState.prototype.availableMoves = function () {
     let moves = [];
-    for (let i = 0; i < this.BOARDLENGTH; i++) {
-        for (let j = 0; j < this.BOARDWIDTH; j++) {
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
             if (this.validMove([i, j], this.currentPlayer)) {
                 moves.push([i, j]);
             }
@@ -82,6 +82,8 @@ BoardState.prototype.validMove = function(pos, player) {
 
     let posR = pos[0];
     let posC = pos[1];
+
+    if (this.board[posR][posC] !== null) return false;
     for (const dr of dirs) {
         for (const dc of dirs) {
             if (dr == 0 && dc == 0) continue;
@@ -108,8 +110,6 @@ BoardState.prototype.movesInDir = function (r, dr, c, dc, positions = []) {
     // debugger;
     if (!this.validPos([r + dr, c + dc])) return [];
     let currPiece = this.board[r + dr][c + dc];
-
-    if (!currPiece || currPiece === "MOVE") return []; // CHANGE THE MOVE PART
 
     // if flanking condition is true
     if (currPiece === this.currentPlayer && positions.length > 0) {
@@ -148,7 +148,7 @@ BoardState.prototype.makeMove = function(pos) {
     }
 
     // flip all the relevant pieces for the current move
-    this.board[r][c] = this.currentPlayer;
+    if (moves.length > 0) this.board[r][c] = this.currentPlayer;
     // debugger;
     for (let move of moves) {
         this.flip(move);
