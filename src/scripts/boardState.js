@@ -165,6 +165,13 @@ BoardState.prototype.testMove = function(arr) {
     }
 }
 
+BoardState.prototype.reverseTestMove = function (arr) {
+    for (let ele of arr) {
+        this.board[ele[0]][ele[1]] = null;
+    }
+}
+
+
 
 // prints out the string version of the board to the console
 BoardState.prototype.printBoard = function() {
