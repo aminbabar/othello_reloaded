@@ -2,7 +2,10 @@
 // import BoardState from "./scripts/boardState";
 // import View from "./scripts/othelloView";
 import RandomPlayer from "./scripts/Players/randomPlayer";
+// import HumanPlayer from "./scripts/Players/humanPlayer";
 import Game from "./scripts/game";
+import HumanPlayer from "./scripts/Players/humanPlayer";
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -14,7 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // let view = new View(state, figure);
     // view.refreshBoard(state.getBoard(), state.availableMoves());
     let player1 = new RandomPlayer();
-    let player2 = new RandomPlayer();
+    // debugger;
+    let player2 = new HumanPlayer();
+    
     let game = new Game(figure, player1, player2);
 
 

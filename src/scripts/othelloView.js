@@ -1,8 +1,11 @@
 
 // this.ul.children[2].children[0].classList.add("black")
 
+
+// CHANGE GAME. ITS BOARD. 
 class View {
-    constructor(game, el) {
+    constructor(game, el, gameCtx) {
+        this.gameCtx = gameCtx;
         this.game = game;
         this.el = el;
         this.currentPlayer = document.createElement("h2");
@@ -30,6 +33,7 @@ class View {
                 this.game.makeMove(pos);
                 // debugger;
                 this.refreshBoard(this.game.board, this.game.availableMoves());
+                this.gameCtx.play();
             }
         }
         // debugger;
@@ -87,12 +91,13 @@ class View {
         return ul;
     }
 
-    removeEventHandler(el) {
+    removeEventHandler() {
+        // debugger;
         console.log("event handler removed")
         this.el.removeEventListener("click", this.handleClick);
     }
 
-    addEventHandler(el) {
+    addEventHandler() {
         console.log("event handler added")
         this.el.addEventListener("click", this.handleClick)
     }
