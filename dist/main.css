@@ -71,6 +71,11 @@ h1 {
   margin-top: 25px;
 }
 
+.current-player {
+  text-align: center;
+  font-size: 30px;
+}
+
 .white, .black, .moves {
   background-color: white;
   width: 50px;

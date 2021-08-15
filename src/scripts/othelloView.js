@@ -5,11 +5,17 @@ class View {
     constructor(game, el) {
         this.game = game;
         this.el = el;
+        this.currentPlayer = document.createElement("h2");
+        this.currentPlayer.classList.add("current-player");
+        this.currentPlayer.innerText = "current player: black"
+        el.appendChild(this.currentPlayer);
         this.ul = this.setupBoard();
         this.el.appendChild(this.ul);
         this.handleClick = this.handleClick.bind(this);
         this.el.addEventListener("click", this.handleClick)
         this.refreshBoard = this.refreshBoard.bind(this);
+        this.removeEventHandler = this.removeEventHandler.bind(this);
+        this.addEventHandler = this.addEventHandler.bind(this);
     }
 
     handleClick (e) {
@@ -19,18 +25,22 @@ class View {
         console.log(this.game.availableMoves());
         for (let ele of this.game.availableMoves()) {
             // debugger;
+            
             if (ele[0] === pos[0] && ele[1] === pos[1]) {
                 this.game.makeMove(pos);
                 // debugger;
                 this.refreshBoard(this.game.board, this.game.availableMoves());
             }
         }
+        // debugger;
     }
 
     refreshBoard(board, availableMoves) {
+        // debugger;
         let ulChildren = this.ul.children;
         // debugger;
         let pieceClasses = ["white", "black", "moves"];
+        this.currentPlayer.innerText = `current player: ${this.game.getCurrentPlayer()}`
 
 
         for (let r = 0; r < 8; r++) {
@@ -38,7 +48,7 @@ class View {
                 // index for the ulChildren array. Index converted to 1D. 
                 let index = (r * 8) + c
                 let currLi = ulChildren[index];
-                currLi.children[0].innerHTML = `r:${r}, c:${c}`
+                // currLi.children[0].innerHTML = `r:${r}, c:${c}`
                 currLi.children[0].classList.remove(...pieceClasses);
                 if (board[r][c] === "white") {
                     currLi.children[0].classList.add("white");
@@ -75,6 +85,16 @@ class View {
             }
         }
         return ul;
+    }
+
+    removeEventHandler(el) {
+        console.log("event handler removed")
+        this.el.removeEventListener("click", this.handleClick);
+    }
+
+    addEventHandler(el) {
+        console.log("event handler added")
+        this.el.addEventListener("click", this.handleClick)
     }
 }
 

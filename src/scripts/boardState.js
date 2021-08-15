@@ -62,6 +62,10 @@ BoardState.prototype.getBoard = function() {
     return this.board;
 }
 
+BoardState.prototype.getCurrentPlayer = function() {
+    return this.currentPlayer;
+}
+
 // returns true if the current position is within bounds, else false
 BoardState.prototype.validPos = function(pos) {
     let posR = pos[0];
@@ -110,6 +114,8 @@ BoardState.prototype.movesInDir = function (r, dr, c, dc, positions = []) {
     // debugger;
     if (!this.validPos([r + dr, c + dc])) return [];
     let currPiece = this.board[r + dr][c + dc];
+
+    if (!currPiece) return [];
 
     // if flanking condition is true
     if (currPiece === this.currentPlayer && positions.length > 0) {
@@ -165,6 +171,14 @@ BoardState.prototype.currentPlayerScore = function () {
 }
 
 
+BoardState.prototype.gameOver = function() {
+    if (this.availableMoves().length === 0) {
+        return true;
+    }
+    return false;
+}
+
+
 BoardState.prototype.testMove = function(arr) {
     for (let ele of arr) {
         this.board[ele[0]][ele[1]] = "MOVE";
@@ -196,8 +210,6 @@ BoardState.prototype.printBoard = function() {
         console.log(str);
     }
 }
-
-window.BoardState = BoardState;
 
 
 
