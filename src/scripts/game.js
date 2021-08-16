@@ -2,10 +2,11 @@ import BoardState from "./boardState";
 import View from "./othelloView";
 import HumanPlayer from "./Players/humanPlayer";
 import RandomPlayer from "./Players/randomPlayer";
+import ShortTermMaximimizer from "./Players/shortTermMaximizer";
 
 class Game {
     constructor(figure) {
-        this.availablePlayers = ["human", "random"];
+        this.availablePlayers = ["human", "random", "ShortTermMaximizer"];
         this.board = new BoardState();
         this.player1;
         this.player2;
@@ -27,12 +28,18 @@ class Game {
             this.player1 = new HumanPlayer();
         } else if (player1 === "random") {
             this.player1 = new RandomPlayer();
-        } 
+        } else if (player1 === "ShortTermMaximizer") {
+            // debugger;
+            this.player1 = new ShortTermMaximimizer();
+        }
         
         if (player2 === "human") {
             this.player2 = new HumanPlayer();
         } else if (player2 === "random") {
             this.player2 = new RandomPlayer();
+        } else if (player2 === "ShortTermMaximizer") {
+            // debugger;
+            this.player2 = new ShortTermMaximimizer();
         }
         // debugger;
         this.view.refreshBoard(this.board.getBoard(), this.board.availableMoves());
@@ -54,8 +61,6 @@ class Game {
             // this.play();
             setTimeout(makeMove, 0);
         }
-
-
     }
 
     // playCB() {

@@ -21,7 +21,7 @@ class View {
 
 
 
-        // Handing event listenecer to start game button
+        // Handing event listener to start game button
         this.submitForm = document.querySelector("#start-game");
         this.startGameSubmit = this.startGameSubmit.bind(this);
         this.submitForm.addEventListener("submit", this.startGameSubmit);
