@@ -166,8 +166,14 @@ BoardState.prototype.makeMove = function(pos) {
 
 
 
-BoardState.prototype.currentPlayerScore = function () {
-
+BoardState.prototype.count = function (color) {
+    let count = 0;
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            if (this.board[i][j] === color) count += 1;
+        }
+    }
+    return count;
 }
 
 

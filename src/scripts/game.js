@@ -52,7 +52,7 @@ class Game {
         let makeMove = currentPlayer.makeMove.bind(this, this.board, this.view);
         if (!this.board.gameOver()) {
             // this.play();
-            setTimeout(makeMove, 1);
+            setTimeout(makeMove, 0);
         }
 
 

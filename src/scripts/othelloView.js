@@ -1,5 +1,4 @@
 
-// this.ul.children[2].children[0].classList.add("black")
 
 
 // CHANGE GAME. ITS BOARD. 
@@ -57,7 +56,8 @@ class View {
         let ulChildren = this.ul.children;
         // debugger;
         let pieceClasses = ["white", "black", "moves"];
-        this.currentPlayer.innerText = `current player: ${this.game.getCurrentPlayer()}`
+        let stats = `current player: ${this.game.getCurrentPlayer()} black: ${this.game.count("black")} white: ${this.game.count("white")}`;
+        this.currentPlayer.innerText = stats;
 
 
         for (let r = 0; r < 8; r++) {
