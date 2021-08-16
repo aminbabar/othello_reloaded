@@ -2,7 +2,9 @@
 
 
 class RandomPlayer {
-
+    constructor() {
+        this.type = "random";
+    }
 
     makeMove(board, view) {
         // debugger;

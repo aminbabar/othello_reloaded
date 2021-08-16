@@ -1,10 +1,10 @@
 // import { stat } from "fs";
 // import BoardState from "./scripts/boardState";
 // import View from "./scripts/othelloView";
-import RandomPlayer from "./scripts/Players/randomPlayer";
+// import RandomPlayer from "./scripts/Players/randomPlayer";
 // import HumanPlayer from "./scripts/Players/humanPlayer";
 import Game from "./scripts/game";
-import HumanPlayer from "./scripts/Players/humanPlayer";
+// import HumanPlayer from "./scripts/Players/humanPlayer";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,15 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const figure = document.querySelector('.board');
 
 
+    
 
     // let state = new BoardState();
     // let view = new View(state, figure);
     // view.refreshBoard(state.getBoard(), state.availableMoves());
-    let player1 = new RandomPlayer();
+    // let player1 = new RandomPlayer();
     // debugger;
-    let player2 = new HumanPlayer();
+    // let player2 = new RandomPlayer();
     
-    let game = new Game(figure, player1, player2);
+    let game = new Game(figure);
 
 
 

@@ -3,6 +3,10 @@
 
 class HumanPlayer {
 
+    constructor() {
+        this.type = "human";
+    }
+
     makeMove(board, view) {
         // debugger;
         view.addEventHandler();

@@ -1,5 +1,9 @@
 1. Is it a bad idea to add event listener on the top level?
 2. this.removeEventHandler = this.removeEventHandler.bind(this);
 3. this.addEventHandler = this.addEventHandler.bind(this);
-4. ES6 syntax for method definitons?
+4. ES6 syntax for class method definitons?
 5. Recursive set time out https://medium.com/@devinmpierce/recursive-settimeout-8eb953b02b98
+6. this.view = new View(this.board, figure, this);  can I pass this like this
+7. Shoudl I put select tags in the index.html file?
+
+

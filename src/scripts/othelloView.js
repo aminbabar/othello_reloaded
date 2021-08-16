@@ -19,7 +19,20 @@ class View {
         this.refreshBoard = this.refreshBoard.bind(this);
         this.removeEventHandler = this.removeEventHandler.bind(this);
         this.addEventHandler = this.addEventHandler.bind(this);
+
+
+
+        // Handing event listenecer to start game button
+        this.submitForm = document.querySelector("#start-game");
+        this.startGameSubmit = this.startGameSubmit.bind(this);
+        this.submitForm.addEventListener("submit", this.startGameSubmit);
     }
+
+    startGameSubmit(e) {
+        e.preventDefault();
+        this.gameCtx.startGame(e.target.player1.value, e.target.player2.value);
+    }
+
 
     handleClick (e) {
         let data = e.target.dataset;
@@ -100,6 +113,24 @@ class View {
     addEventHandler() {
         console.log("event handler added")
         this.el.addEventListener("click", this.handleClick)
+    }
+
+    displayPlayerOptions(availablePlayers) {
+        player1 = document.querySelector("#player1");
+        player2 = document.querySelector("#player2");
+        for (let player of availablePlayers) {
+            // debugger;
+            let option1 = document.createElement("option");
+            let option2 = document.createElement("option");
+            option1.innerText = player;
+            option1.setAttribute("value", player);
+            option2.innerText = player;
+            option2.setAttribute("value", player);
+            player1.appendChild(option1);
+            player2.appendChild(option2);
+        }
+
+        // debugger;
     }
 }
 

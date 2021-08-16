@@ -173,6 +173,7 @@ BoardState.prototype.currentPlayerScore = function () {
 
 BoardState.prototype.gameOver = function() {
     if (this.availableMoves().length === 0) {
+        console.log("GAME OVER!")
         return true;
     }
     return false;
