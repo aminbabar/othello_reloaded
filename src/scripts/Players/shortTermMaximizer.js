@@ -1,6 +1,6 @@
 
 // CITE: Copied form https://gist.github.com/GeorgeGkas/36f7a7f9a9641c2115a11d58233ebed2
-// Creates a deep copy of a class. Allegedly. 
+// Creates a deep copy of a class.
 function clone(instance) {
     return Object.assign(
         Object.create(
@@ -14,16 +14,17 @@ function clone(instance) {
 }
 
 
+// This player makes a move based on the current available moves which results
+// in the highest score for the current player in the short term for the
+// next turn
 class ShortTermMaximimizer {
 
     constructor() {
         this.type = "ShortTermMaximizer";
-        // this.board = board;
-        // this.view = view;
+
     }
 
     makeMove(board, view) {
-        // debugger;
         let currentPlayer = board.getCurrentPlayer();
         let currentScore = board.count(currentPlayer);
         let availableMoves = board.availableMoves();
@@ -35,10 +36,8 @@ class ShortTermMaximimizer {
         }
 
         let maxIndex = scoreChange.indexOf(Math.max(...scoreChange));
-        // debugger;
         board.makeMove(availableMoves[maxIndex]);
-        console.log(scoreChange);
-        console.log(maxIndex);
+
         // refresh the board view after move
         view.refreshBoard(board.getBoard(), board.availableMoves());
         // Call on play in the game class so that the other player can make a move
