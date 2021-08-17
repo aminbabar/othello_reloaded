@@ -62,9 +62,20 @@ class MinimaxPlayer {
         this.play();
     }
 
-    //  Basic heuristic that maximizes for black and minimizes for white
-    heuristic(boardState) {
+    heuristic() {
         return boardState.count("black") - boardState.count("white");
+    }
+
+    //  Basic heuristic that maximizes for black and minimizes for white
+    betterHeuristic(boardState) {
+        let pieces = boardState.count("black") - boardState.count("white");
+        let totalUtility = 0;
+        totalUtility += boardState.availableMoves().length;
+
+        if (boardState.currentPlayer === "white") {
+            totalUtility *= -1;
+        }
+        return totalUtility + (pieces / 5);
     }
 
     // depth first and depth limited search
@@ -79,7 +90,7 @@ class MinimaxPlayer {
         let availableMoves = boardState.availableMoves();
 
         if (currDepth === depth || availableMoves.length === 0) {
-            return playerCTX.heuristic(boardState);
+            return playerCTX.heuristic(boardStateClone);
         }
 
         // IMPLEMENT LOGIC FOR WHEN MOVES ARE SKIPPED   !!!!
