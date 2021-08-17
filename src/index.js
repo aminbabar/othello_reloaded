@@ -9,8 +9,9 @@ import Game from "./scripts/game";
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    
     const figure = document.querySelector('.board');
-
+    let game = new Game(figure);
 
     
 
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // debugger;
     // let player2 = new RandomPlayer();
     
-    let game = new Game(figure);
+    // let game = new Game(figure);
 
 
 

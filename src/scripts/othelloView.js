@@ -28,6 +28,7 @@ class View {
     }
 
     startGameSubmit(e) {
+        
         e.preventDefault();
         this.gameCtx.startGame(e.target.player1.value, e.target.player2.value);
     }
