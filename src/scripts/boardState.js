@@ -134,6 +134,8 @@ BoardState.prototype.movesInDir = function (r, dr, c, dc, positions = []) {
 }
 
 
+// 
+
 // Should only be called on valid moves. Does not check for validity.
 BoardState.prototype.makeMove = function(pos) {
     // debugger;
@@ -161,7 +163,7 @@ BoardState.prototype.makeMove = function(pos) {
     }
 
     this.currentPlayer = BoardState.oppColor(this.currentPlayer);
-    this.printBoard();
+    // this.printBoard();
 }
 
 

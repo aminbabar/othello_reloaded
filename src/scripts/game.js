@@ -3,10 +3,11 @@ import View from "./othelloView";
 import HumanPlayer from "./Players/humanPlayer";
 import RandomPlayer from "./Players/randomPlayer";
 import ShortTermMaximimizer from "./Players/shortTermMaximizer";
+import MinimaxPlayer from "./Players/MinimaxPlayer";
 
 class Game {
     constructor(figure) {
-        this.availablePlayers = ["human", "random", "ShortTermMaximizer"];
+        this.availablePlayers = ["human", "random", "ShortTermMaximizer", "MinimaxPlayer"];
         this.board = new BoardState();
         this.player1;
         this.player2;
@@ -14,6 +15,7 @@ class Game {
         // this.view.refreshBoard(this.board.getBoard(), this.board.availableMoves());
         this.displayPlayerOptions();
         // this.play(this.board);
+        this.minimaxAlgorithm;
     }
 
     // Displays the options for the available players
@@ -29,8 +31,9 @@ class Game {
         } else if (player1 === "random") {
             this.player1 = new RandomPlayer();
         } else if (player1 === "ShortTermMaximizer") {
-            // debugger;
             this.player1 = new ShortTermMaximimizer();
+        } else if (player1 === "MinimaxPlayer") {
+            this.player1 = new MinimaxPlayer();
         }
         
         if (player2 === "human") {
@@ -38,10 +41,13 @@ class Game {
         } else if (player2 === "random") {
             this.player2 = new RandomPlayer();
         } else if (player2 === "ShortTermMaximizer") {
-            // debugger;
             this.player2 = new ShortTermMaximimizer();
+        } else if (player2 === "MinimaxPlayer") {
+            this.player2 = new MinimaxPlayer();
         }
-        // debugger;
+
+
+
         this.view.refreshBoard(this.board.getBoard(), this.board.availableMoves());
         this.play(this.board);
     }
@@ -56,7 +62,9 @@ class Game {
         } else if ((this.board.getCurrentPlayer() === "white")) {
             currentPlayer = this.player2;
         }
-        let makeMove = currentPlayer.makeMove.bind(this, this.board, this.view);
+
+        // this.minimaxAlgorithm = currentPlayer.minimaxAlgorithm.bind(this);
+        let makeMove = currentPlayer.makeMove.bind(this, this.board, this.view, currentPlayer);
         if (!this.board.gameOver()) {
             // this.play();
             setTimeout(makeMove, 0);
