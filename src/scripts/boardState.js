@@ -1,4 +1,4 @@
-
+let num = 0;
 class BoardState {
     
     constructor() {
@@ -138,6 +138,7 @@ BoardState.prototype.movesInDir = function (r, dr, c, dc, positions = []) {
 
 // Should only be called on valid moves. Does not check for validity.
 BoardState.prototype.makeMove = function(pos) {
+    num += 1;
     // debugger;
     const r = pos[0];
     const c = pos[1];
@@ -182,6 +183,7 @@ BoardState.prototype.count = function (color) {
 BoardState.prototype.gameOver = function() {
     if (this.availableMoves().length === 0) {
         console.log("GAME OVER!")
+        console.log(num);
         return true;
     }
     return false;

@@ -27,7 +27,7 @@ class MinimaxPlayer {
 
 
     makeMove(board, view, playerCTX) {
-        let depth = 4;
+        let depth = 3;
         let currentPlayer = board.getCurrentPlayer();
         let availableMoves = board.availableMoves();
 
@@ -62,12 +62,12 @@ class MinimaxPlayer {
         this.play();
     }
 
-    heuristic() {
+    heuristicone(boardState) {
         return boardState.count("black") - boardState.count("white");
     }
 
     //  Basic heuristic that maximizes for black and minimizes for white
-    betterHeuristic(boardState) {
+    heuristic(boardState) {
         let pieces = boardState.count("black") - boardState.count("white");
         let totalUtility = 0;
         totalUtility += boardState.availableMoves().length;
