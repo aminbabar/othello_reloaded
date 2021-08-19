@@ -182,9 +182,16 @@ BoardState.prototype.count = function (color) {
 
 BoardState.prototype.gameOver = function() {
     if (this.availableMoves().length === 0) {
+
         console.log("GAME OVER!")
         console.log(num);
-        return true;
+        if (this.count("black") > this.count("white")) {
+            return "black";
+        } else if (this.count("black") > this.count("white")) {
+            return "white";
+        } else {
+            return "draw";
+        }
     }
     return false;
 }

@@ -4,10 +4,11 @@ import HumanPlayer from "./Players/humanPlayer";
 import RandomPlayer from "./Players/randomPlayer";
 import ShortTermMaximimizer from "./Players/shortTermMaximizer";
 import MinimaxPlayer from "./Players/MinimaxPlayer";
+import AlphaBetaPlayer from "./Players/alphaBetaPlayer";
 
 class Game {
     constructor(figure) {
-        this.availablePlayers = ["human", "random", "ShortTermMaximizer", "MinimaxPlayer"];
+        this.availablePlayers = ["human", "random", "ShortTermMaximizer", "MinimaxPlayer", "AlphaBetaPlayer"];
         this.board = new BoardState();
         this.player1;
         this.player2;
@@ -34,6 +35,8 @@ class Game {
             this.player1 = new ShortTermMaximimizer();
         } else if (player1 === "MinimaxPlayer") {
             this.player1 = new MinimaxPlayer();
+        } else if (player1 === "AlphaBetaPlayer") {
+            this.player1 = new AlphaBetaPlayer();
         }
         
         if (player2 === "human") {
@@ -44,6 +47,8 @@ class Game {
             this.player2 = new ShortTermMaximimizer();
         } else if (player2 === "MinimaxPlayer") {
             this.player2 = new MinimaxPlayer();
+        } else if (player2 === "AlphaBetaPlayer") {
+            this.player2 = new AlphaBetaPlayer();
         }
 
 
@@ -68,7 +73,10 @@ class Game {
         if (!this.board.gameOver()) {
             // this.play();
             setTimeout(makeMove, 0);
+            
         }
+
+
     }
 
     // playCB() {

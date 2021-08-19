@@ -19,10 +19,10 @@ function clone(instance) {
 
 
 
-class MinimaxPlayer {
+class AlphaBetaPlayer {
     constructor() {
-        this.type = "MinimaxPlayer";
-        this.minimaxAlgorithm = this.minimaxAlgorithm.bind(this);
+        this.type = "AlphaBetaPlayer";
+        this.alphaBetaAlgorithm = this.alphaBetaAlgorithm.bind(this);
     }
 
 
@@ -38,14 +38,13 @@ class MinimaxPlayer {
         } else {
             maximizingPlayer = false;
         }
-        
-        // let minimaxAlgorithm =  playerCTX.minimaxAlgorithm.bind(playerCTX);
-        // let boardStateClone = clone(board);
-        
+
+
+
         let evalList = [];
         for (let move of availableMoves) {
             // debugger;
-            evalList.push(playerCTX.minimaxAlgorithm(board, move, 0, depth, maximizingPlayer, playerCTX));
+            evalList.push(playerCTX.alphaBetaAlgorithm(board, move, 0, depth, maximizingPlayer, playerCTX, -Infinity, Infinity));
         }
 
         // CONVERT TO ONE LINER
@@ -79,7 +78,7 @@ class MinimaxPlayer {
     }
 
     // depth first and depth limited search
-    minimaxAlgorithm(boardState, move, currDepth, depth, maximizingPlayer, playerCTX) {
+    alphaBetaAlgorithm(boardState, move, currDepth, depth, maximizingPlayer, playerCTX, alpha, beta) {
         // if the desired depth has been reached, we will return the evaluation
         // for that depth
 
@@ -105,20 +104,21 @@ class MinimaxPlayer {
             let maxEval = -Infinity;
             // let availableMoves = boardState.availableMoves();
             for (let newMove of availableMoves) {
-                let currEval = playerCTX.minimaxAlgorithm(boardStateClone, newMove, currDepth + 1, depth, !maximizingPlayer, playerCTX);
-                if (currEval > maxEval) {
-                    maxEval = currEval;
-                }
+                let currEval = playerCTX.alphaBetaAlgorithm(boardStateClone, newMove, currDepth + 1, depth, !maximizingPlayer, playerCTX, alpha, beta);
+                maxEval = Math.max(maxEval, currEval);
+                alpha = Math.max(maxEval, alpha);
+                // debugger;
+                if (alpha >= beta) return maxEval;
             }
             return maxEval;
         } else {
             let minEval = Infinity;
             // let availableMoves = boardStateClone.availableMoves();
             for (let newMove of availableMoves) {
-                let currEval = playerCTX.minimaxAlgorithm(boardStateClone, newMove, currDepth + 1, depth, !maximizingPlayer, playerCTX);
-                if (currEval < minEval) {
-                    minEval = currEval;
-                }
+                let currEval = playerCTX.alphaBetaAlgorithm(boardStateClone, newMove, currDepth + 1, depth, !maximizingPlayer, playerCTX, alpha, beta);
+                minEval = Math.min(minEval, currEval);
+                beta = Math.min(minEval, beta);
+                if (alpha >= beta) return minEval;
             }
             return minEval;
         }
@@ -127,4 +127,4 @@ class MinimaxPlayer {
     }
 }
 
-export default MinimaxPlayer;
+export default AlphaBetaPlayer;
