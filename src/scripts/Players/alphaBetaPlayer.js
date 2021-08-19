@@ -85,12 +85,24 @@ class AlphaBetaPlayer {
         // CHECK IF THE NEXT TWO LINES ARE NEEDED    !!!!
         let boardStateClone = clone(boardState);
         // debugger;
+
+        let currPlayer = boardState.getCurrentPlayer();
         boardStateClone.makeMove(move);
+
         let availableMoves = boardState.availableMoves();
 
-        if (currDepth === depth || availableMoves.length === 0) {
+        if (currDepth === depth || boardStateClone.gameOver()) {
             return playerCTX.heuristic(boardStateClone);
         }
+
+        // CHECK IF THIS HELPS WITH WIN PERCENTAGE
+        // Moves have been flipped because one player ran out of moves so maximizing player needs to 
+        // be flipped
+        if (currPlayer == boardStateClone.getCurrentPlayer()) {
+            // debugger;
+            maximizingPlayer = !maximizingPlayer;
+        }
+
 
         // IMPLEMENT LOGIC FOR WHEN MOVES ARE SKIPPED   !!!!
         // let currentPLayer = boardState.currentPLayer();

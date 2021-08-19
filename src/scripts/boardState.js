@@ -182,6 +182,13 @@ BoardState.prototype.count = function (color) {
 
 BoardState.prototype.gameOver = function() {
     if (this.availableMoves().length === 0) {
+        
+        // Flips the move if the current player has zero moves remaining
+        this.currentPlayer = BoardState.oppColor(this.currentPlayer);
+        if (this.availableMoves().length !== 0) {
+            // debugger;
+            return false;
+        }
 
         console.log("GAME OVER!")
         console.log(num);
